@@ -12,17 +12,24 @@ jobs:
   push-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Create Q5_archive_date.txt
+    
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Création Q5_archive_date.txt
         run: |
           DATE=$(date +%d-%m-%Y)
           echo "Maximilien Lesterlin" > Q5_archive_$DATE.txt
           echo "Contenu de Q5.java:" >> Q5_archive_$DATE.txt
           cat Q5.java >> Q5_archive_$DATE.txt
-      - name: Commit and push
+
+      - name: Configure Git
         run: |
-          git config --local user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
-          git config --local user.name "Amaxi76"
+          git config user.name "Amaxi76"
+          git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
+          
+      - name: Commit et push des changements
+        run: |
           git add Q5_archive_*.txt
           git commit -m "Add Q5_archive_date.txt"
           git push
