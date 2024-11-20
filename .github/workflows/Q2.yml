@@ -30,7 +30,7 @@ jobs:
         git config user.name "Amaxi76"
         git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
 
-    - name: ML commit et push
+    - name: Commit et push des changements
       run: |
         git add Q2_archive_README.md
         git commit -m "Création de Q2_archive_README.md avec date, nom/prénom et contenu de README.md"
