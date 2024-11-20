@@ -1,0 +1,30 @@
+name: Copy README and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Créer Q1_archive_README.md
+      run: |
+        cp README.md Q1_archive_README.md
+
+    - name: Configure Git
+      run: |
+        git config user.name "Amaxi76"
+        git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
+
+    # 4. Commit and push the changes
+    - name: Commit and push changes
+      run: |
+        git add Q1_archive_README.md
+        git commit -m "Création de Q1_archive_README.md"
+        git push origin main
