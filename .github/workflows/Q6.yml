@@ -41,4 +41,5 @@ jobs:
           git config --local user.name "Amaxi76"
           git add Q6_archive_*.txt Q6_différences.txt
           git commit -m "Add Q6 files"
+          git pull --rebase
           git push
