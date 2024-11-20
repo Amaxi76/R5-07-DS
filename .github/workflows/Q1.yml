@@ -1,4 +1,4 @@
-name: Copy README and Push (Q1)
+name: Q1
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Create Q1_archive_README.md
+    - name: Création de Q1_archive_README.md
       run: |
         cp README.md Q1_archive_README.md
 
@@ -25,8 +25,9 @@ jobs:
         git config user.name "Amaxi76"
         git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
 
-    - name: Commit and push changes
+    - name: Commit et push des changements
       run: |
         git add Q1_archive_README.md
         git commit -m "Update Q1_archive_README.md"
+        git pull --rebase
         git push origin main
