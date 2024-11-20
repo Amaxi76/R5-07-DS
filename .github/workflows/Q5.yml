@@ -1,0 +1,28 @@
+name: Q5
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Q5_archive_date.txt
+        run: |
+          DATE=$(date +%d-%m-%Y)
+          echo "Maximilien Lesterlin" > Q5_archive_$DATE.txt
+          echo "Contenu de Q5.java:" >> Q5_archive_$DATE.txt
+          cat Q5.java >> Q5_archive_$DATE.txt
+      - name: Commit and push
+        run: |
+          git config --local user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
+          git config --local user.name "Amaxi76"
+          git add Q5_archive_*.txt
+          git commit -m "Add Q5_archive_date.txt"
+          git push
