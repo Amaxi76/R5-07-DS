@@ -16,6 +16,10 @@ jobs:
       run: |
         cp README.md Q1_archive_README.md
 
+    - name: Pull
+      run: |
+        git pull origin main --rebase
+
     - name: Configure Git
       run: |
         git config user.name "Amaxi76"
