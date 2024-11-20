@@ -29,5 +29,4 @@ jobs:
       run: |
         git add Q1_archive_README.md
         git commit -m "Update Q1_archive_README.md"
-        git pull --rebase
         git push origin main
