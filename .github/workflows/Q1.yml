@@ -24,6 +24,7 @@ jobs:
     # 4. Commit and push the changes
     - name: Commit and push changes
       run: |
+        git pull origin main --rebase
         git add Q1_archive_README.md
         git commit -m "Création de Q1_archive_README.md"
         git push origin main
