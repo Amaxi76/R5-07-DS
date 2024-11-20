@@ -13,22 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1. Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    # 2. Create Q1_archive_README.md
     - name: Create Q1_archive_README.md
       run: |
         cp README.md Q1_archive_README.md
 
+    # 3. Synchronize repository
     - name: Pull latest changes
       run: |
         git pull origin main --rebase
 
+    # 4. Configure Git
     - name: Configure Git
       run: |
         git config user.name "Amaxi76"
         git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
 
+    # 5. Commit and push the changes
     - name: Commit and push changes
       run: |
         git add Q1_archive_README.md
