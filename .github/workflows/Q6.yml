@@ -16,7 +16,7 @@ jobs:
       - name: Create Q6_archive_date.txt
         run: |
           DATE=$(date +%d-%m-%Y-%H%M%S)
-          echo "Maximilien Lesterlin > Q6_archive_$DATE.txt
+          echo "Maximilien Lesterlin" > Q6_archive_$DATE.txt
           echo "Contenu de Q6.java:" >> Q6_archive_$DATE.txt
           cat Q6.java >> Q6_archive_$DATE.txt
           echo "Taille de Q6.java:" >> Q6_archive_$DATE.txt
