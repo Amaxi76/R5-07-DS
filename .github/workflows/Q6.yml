@@ -12,8 +12,11 @@ jobs:
   push-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Create Q6_archive_date.txt
+    
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Création de Q6_archive_date.txt
         run: |
           DATE=$(date +%d-%m-%Y-%H%M%S)
           echo "Maximilien Lesterlin" > Q6_archive_$DATE.txt
@@ -22,7 +25,8 @@ jobs:
           echo "Taille de Q6.java:" >> Q6_archive_$DATE.txt
           wc -c Q6.java | awk '{print $1 " caractères"}' >> Q6_archive_$DATE.txt
           wc -l Q6.java | awk '{print $1 " lignes"}' >> Q6_archive_$DATE.txt
-      - name: Create Q6_différences.txt
+          
+      - name: Création de Q6_différences.txt
         run: |
           CURRENT=$(ls -t Q6_archive_*.txt | head -n1)
           PREVIOUS=$(ls -t Q6_archive_*.txt | head -n2 | tail -n1)
@@ -31,10 +35,14 @@ jobs:
           else
             echo "Pas de fichier précédent pour comparer" > Q6_différences.txt
           fi
-      - name: Commit and push
+
+      - name: Configure Git
         run: |
-          git config --local user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
-          git config --local user.name "Amaxi76"
+          git config user.name "Amaxi76"
+          git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
+          
+      - name: Commit et push des changements
+        run: |
           git add Q6_archive_*.txt Q6_différences.txt
           git commit -m "Add Q6 files"
           git pull --rebase
