@@ -23,6 +23,6 @@ jobs:
         run: |
           git config --local user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
           git config --local user.name "Amaxi76"
-          git add Q3_archive_java.txt
-          git commit -m "Add Q3_archive_java.txt"
+          git add Q4_archive_*.txt
+          git commit -m "Add Q4_archive_date.txt"
           git push
