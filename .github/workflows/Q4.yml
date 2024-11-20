@@ -16,7 +16,7 @@ jobs:
       - name: Create Q4_archive_date.txt
         run: |
           DATE=$(date +%d-%m-%Y)
-          echo "Nom Prénom: [Votre nom et prénom]" > Q4_archive_$DATE.txt
+          echo "Maximilien Lesterlin" > Q4_archive_$DATE.txt
           echo "Contenu de Q4.java:" >> Q4_archive_$DATE.txt
           cat Q4.java >> Q4_archive_$DATE.txt
       - name: Commit and push
