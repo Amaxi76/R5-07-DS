@@ -1,4 +1,4 @@
-name: Q2
+name: Add Execution Info and Copy README (Q2)
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Création de Q2_archive_README.md
+    - name: Create Q2_archive_README.md
       run: |
         echo "Nom: Maximilien Lesterlin" > Q2_archive_README.md
         echo "Date et Heure d'exécution: $(date '+%Y-%m-%d %H:%M:%S')" >> Q2_archive_README.md
@@ -25,13 +25,17 @@ jobs:
         echo "" >> Q2_archive_README.md
         cat README.md >> Q2_archive_README.md
 
+    - name: Pull latest changes
+      run: |
+        git pull origin main --rebase
+
     - name: Configure Git
       run: |
         git config user.name "Amaxi76"
         git config user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
 
-    - name: ML commit et push
+    - name: Commit and push changes
       run: |
         git add Q2_archive_README.md
-        git commit -m "Création de Q2_archive_README.md avec date, nom/prénom et contenu de README.md"
+        git commit -m "Update Q2_archive_README.md with execution info"
         git push origin main
