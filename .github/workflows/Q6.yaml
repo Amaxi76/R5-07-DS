@@ -1,0 +1,35 @@
+name: Q6
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Q6_archive_date.txt
+        run: |
+          DATE=$(date +%d-%m-%Y-%H%M%S)
+          echo "Maximilien Lesterlin > Q6_archive_$DATE.txt
+          echo "Contenu de Q6.java:" >> Q6_archive_$DATE.txt
+          cat Q6.java >> Q6_archive_$DATE.txt
+          echo "Taille de Q6.java:" >> Q6_archive_$DATE.txt
+          wc Q6.java >> Q6_archive_$DATE.txt
+      - name: Create Q6_différences.txt
+        run: |
+          CURRENT=$(ls -t Q6_archive_*.txt | head -n1)
+          PREVIOUS=$(ls -t Q6_archive_*.txt | head -n2 | tail -n1)
+          diff $CURRENT $PREVIOUS > Q6_différences.txt || true
+      - name: Commit and push
+        run: |
+          git config --local user.email "maximilien.lesterlin@etu.univ-lehavre.fr"
+          git config --local user.name "Amaxi76"
+          git add Q6_archive_*.txt Q6_différences.txt
+          git commit -m "Add Q6 files"
+          git push
